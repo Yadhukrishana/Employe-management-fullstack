@@ -3,15 +3,27 @@ package com.yadhu.employe_management.services;
 import com.yadhu.employe_management.model.Employe;
 import com.yadhu.employe_management.repository.EmployeRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EmployeService {
-    private final EmployeRepository repository;
+    @Autowired
+    private EmployeRepository repository;
 
     public Employe postEmploye(Employe employe)
     {
-        return repository.save(employe);
+
+         repository.save(employe);
+        return employe;
+    }
+    public List<Employe> getEmploye()
+    {
+        return repository.findAll();
+
     }
 }
